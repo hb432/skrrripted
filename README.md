@@ -6,3 +6,6 @@ Make sure you have Rocket League installed and NOT currently open. Download this
 
 # Config
 To create your own shots and plays, you will need to edit the `src/agent.json` file. This file contains the instruction set used to guide the ball and any cars on the field. Using the GUI, you can add more bots, but these bots will need instruction sets, or they will simply do nothing. You can use the example provided in this repository as a guide.
+
+# Tips
+You can reset the script by pausing and unpausing the game, or scoring the ball into the net. In addition, you can also press "R" while focused on the RLBot console window.
