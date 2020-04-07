@@ -4,13 +4,12 @@ from os import path, getcwd
 
 from math import pi, floor
 
-from rlbot.utils.game_state_util import GameState
+from rlbot.utils.game_state_util import GameState, CarState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
-
-def json(*args):
-    return load(open(path.join(*args)))
+agent = load(open(path.join(getcwd(), 'src', 'agent.json')))
+script = load(open(path.join(getcwd(), 'src', agent['script'])))
 
 
 def reset(ctrl):
@@ -33,7 +32,6 @@ def control(ctrl, data, tick):
         if code[0] == 'wait':
             total = total + time
         elif tick == total + time:
-            pprint('release: ' + code[0])
             if code[0] == 'jump':
                 ctrl.jump = False
             if code[0] == 'boost':
@@ -57,7 +55,6 @@ def control(ctrl, data, tick):
             if code[0] == 'roll-r':
                 ctrl.roll = 0
         elif tick == total:
-            pprint('press: ' + code[0])
             if code[0] == 'jump':
                 ctrl.jump = True
             if code[0] == 'boost':
@@ -105,41 +102,38 @@ def physics(phys, data, velo):
         phys.angular_velocity.z = 0
 
 
-agent = json(getcwd(), 'src', 'agent.json')
-script = json(getcwd(), 'src', agent['script'])
-
-
 class Agent(BaseAgent):
-
+    
     def initialize_agent(self):
         self.tick = 0
         self.mode = 0
         self.control = SimpleControllerState()
         if self.index < len(script['cars']):
             self.data = script['cars'][self.index]
+        else:
+            self.data = None
 
     def get_output(self, packet: GameTickPacket):
-        if not self.data:
-            return self.control
-        ready = packet.game_info.is_round_active
-        if self.mode == 1 and ready:
-            if self.tick == -60:
-                reset(self.control)
-                state = GameState.create_from_gametickpacket(packet)
-                physics(state.cars[self.index].physics, self.data, False)
-                physics(state.ball.physics, script['ball'], False)
-                self.set_game_state(state)
-            if self.tick == -1:
-                state = GameState.create_from_gametickpacket(packet)
-                physics(state.cars[self.index].physics, self.data, True)
-                physics(state.ball.physics, script['ball'], True)
-                self.set_game_state(state)
-            elif self.tick > -1:
-                control(self.control, self.data, self.tick)
-            self.tick = self.tick + 1
-        if self.mode == 0 and ready:
-            self.tick = -60
-            self.mode = 1
-        if self.mode == 1 and not ready:
-            self.mode = 0
+        if self.data:
+            ready = packet.game_info.is_round_active
+            if self.mode == 1 and ready:
+                if self.tick == -60:
+                    reset(self.control)
+                    state = GameState.create_from_gametickpacket(packet)
+                    physics(state.cars[self.index].physics, self.data, False)
+                    physics(state.ball.physics, script['ball'], False)
+                    self.set_game_state(state)
+                if self.tick == -1:
+                    state = GameState.create_from_gametickpacket(packet)
+                    physics(state.cars[self.index].physics, self.data, True)
+                    physics(state.ball.physics, script['ball'], True)
+                    self.set_game_state(state)
+                elif self.tick > -1:
+                    control(self.control, self.data, self.tick)
+                self.tick = self.tick + 1
+            if self.mode == 0 and ready:
+                self.tick = -60
+                self.mode = 1
+            if self.mode == 1 and not ready:
+                self.mode = 0
         return self.control
