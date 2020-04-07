@@ -4,7 +4,7 @@ Set the initial position of the ball and cars on the field, then apply frame-per
 # Usage (For Dummies)
 Make sure you have Rocket League installed and NOT currently open. Download this repository via a ZIP file and extract the contents. Then, navigate to the extracted files and double-click the `run-gui.bat` file. Once the RLBot GUI opens, click "Run" in the lower-right corner. Rocket League will open into a new lobby, and once the game starts, you should see a freestyle shot being scored!
 
-**You may need to set your game's max FPS to 60 to ensure the bots are consistent in their movement.** It's at the bottom left of Rocket League's "video" settings tab.
+**Note: You will need to set your game's max FPS to 120.** It's at the bottom left of Rocket League's "video" settings tab.
 
 # Config
 To create your own shots and plays, you will need to edit the `src/agent.json` file. This file contains the instruction set used to guide the ball and any cars on the field. Using the GUI, you can add more bots, but these bots will need instruction sets, or they will simply do nothing. You can use the example provided in this repository as a guide.
