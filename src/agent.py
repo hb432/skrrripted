@@ -9,6 +9,7 @@ from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
 agent = load(open(path.join(getcwd(), 'src/agent.json')))
+current = 0
 
 
 def reset(ctrl):
@@ -104,13 +105,18 @@ def physics(phys, data, velo):
 
 
 class Agent(BaseAgent):
+
     def initialize_agent(self):
         self.tick = 0
         self.mode = 0
-        self.data = agent['cars'][self.index]
         self.control = SimpleControllerState()
+        if current < len(agent['cars']):
+            self.data = agent['cars'][current]
+            current = current + 1
 
     def get_output(self, packet: GameTickPacket):
+        if not self.data:
+            return self.control
         ready = packet.game_info.is_round_active
         if self.mode == 1 and ready:
             if self.tick == -60:
