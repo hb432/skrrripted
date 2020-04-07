@@ -8,8 +8,9 @@ from rlbot.utils.game_state_util import GameState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
-agent = load(open(path.join(getcwd(), 'src/scripts/example.json')))
-current = 0
+
+def json(*args):
+    return load(open(path.join(*args)))
 
 
 def reset(ctrl):
@@ -104,15 +105,18 @@ def physics(phys, data, velo):
         phys.angular_velocity.z = 0
 
 
+agent = json(getcwd(), 'src', 'agent.json')
+script = json(getcwd(), 'src', agent['script'])
+
+
 class Agent(BaseAgent):
 
     def initialize_agent(self):
         self.tick = 0
         self.mode = 0
         self.control = SimpleControllerState()
-        if current < len(agent['cars']):
-            self.data = agent['cars'][current]
-            current = current + 1
+        if self.index < len(script['cars']):
+            self.data = script['cars'][self.index]
 
     def get_output(self, packet: GameTickPacket):
         if not self.data:
@@ -123,12 +127,12 @@ class Agent(BaseAgent):
                 reset(self.control)
                 state = GameState.create_from_gametickpacket(packet)
                 physics(state.cars[self.index].physics, self.data, False)
-                physics(state.ball.physics, agent['ball'], False)
+                physics(state.ball.physics, script['ball'], False)
                 self.set_game_state(state)
             if self.tick == -1:
                 state = GameState.create_from_gametickpacket(packet)
                 physics(state.cars[self.index].physics, self.data, True)
-                physics(state.ball.physics, agent['ball'], True)
+                physics(state.ball.physics, script['ball'], True)
                 self.set_game_state(state)
             elif self.tick > -1:
                 control(self.control, self.data, self.tick)
