@@ -10,6 +10,7 @@ from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
 agent = load(open(path.join(getcwd(), 'src', 'agent.json')))
 script = load(open(path.join(getcwd(), 'src', agent['script'])))
+session = { 'leader': None }
 
 
 def reset(ctrl):
@@ -112,28 +113,33 @@ class Agent(BaseAgent):
             self.data = script['cars'][self.index]
         else:
             self.data = None
+        if session['leader'] == None:
+            session['leader'] = self.index
 
     def get_output(self, packet: GameTickPacket):
+        ready = packet.game_info.is_round_active
         if self.data:
-            ready = packet.game_info.is_round_active
             if self.mode == 1 and ready:
-                if self.tick == -60:
-                    reset(self.control)
-                    state = GameState.create_from_gametickpacket(packet)
-                    physics(state.cars[self.index].physics, self.data, False)
-                    physics(state.ball.physics, script['ball'], False)
-                    self.set_game_state(state)
-                if self.tick == -1:
-                    state = GameState.create_from_gametickpacket(packet)
-                    physics(state.cars[self.index].physics, self.data, True)
-                    physics(state.ball.physics, script['ball'], True)
-                    self.set_game_state(state)
-                elif self.tick > -1:
+                if self.tick > -1:
                     control(self.control, self.data, self.tick)
+                if self.index == session['leader']:
+                    cars = script['cars']
+                    state = GameState.create_from_gametickpacket(packet)
+                    if self.tick == -60:
+                        physics(state.ball.physics, script['ball'], False)
+                        for i in range(len(cars)):
+                            physics(state.cars[i].physics, cars[i], False)
+                        self.set_game_state(state)
+                    if self.tick == -1:
+                        physics(state.ball.physics, script['ball'], True)
+                        for i in range(len(cars)):
+                            physics(state.cars[i].physics, cars[i], True)
+                        self.set_game_state(state)
                 self.tick = self.tick + 1
             if self.mode == 0 and ready:
                 self.tick = -60
                 self.mode = 1
+                reset(self.control)
             if self.mode == 1 and not ready:
                 self.mode = 0
         return self.control

@@ -1,7 +1,7 @@
 {
    "ball": {
       "location": {
-         "x": -3030,
+         "x": -3010,
          "y": 0,
          "z": 1000
       },
@@ -16,7 +16,7 @@
          "z": 800
       },
       "angular_velocity": {
-         "x": 0,
+         "x": 3000,
          "y": 0,
          "z": 0
       }
@@ -93,8 +93,55 @@
             "z": 0
          },
          "instructions": [
-            "boost 40",
-            "forward 40"
+            "boost 105",
+            "forward 105",
+            "wait 30",
+            "turn-l 20",
+            "wait 60",
+            "turn-r 21",
+            "wait 90",
+            "backward 5",
+            "boost 4",
+            "wait 18",
+            "jump 1",
+            "wait 10",
+            "roll-r 15",
+            "turn-l 10",
+            "boost 20",
+            "wait 20",
+            "forward 2",
+            "wait 1",
+            "roll-r 1",
+            "jump 1",
+            "wait 15",
+            "backward 35",
+            "wait 18",
+            "boost 20",
+            "wait 15",
+            "turn-r 7",
+            "wait 7",
+            "backward 25",
+            "wait 34",
+            "backward 2",
+            "wait 1",
+            "turn-r 1",
+            "jump 1",
+            "wait 15",
+            "forward 35",
+            "boost 45",
+            "wait 10",
+            "roll-r 40",
+            "wait 80",
+            "turn-r 8",
+            "wait 3",
+            "backward 4",
+            "wait 11",
+            "jump 1",
+            "wait 5",
+            "forward 2",
+            "wait 1",
+            "turn-r 1",
+            "jump 1"
          ]
       }
    ]
