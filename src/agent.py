@@ -8,7 +8,7 @@ from rlbot.utils.game_state_util import GameState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
-agent = load(open(path.join(getcwd(), 'src/agent.json')))
+agent = load(open(path.join(getcwd(), 'src/scripts/example.json')))
 current = 0
 
 
