@@ -1,11 +1,12 @@
 from json import load
-from pprint import pprint
 from math import pi, floor
 from os import path, getcwd
 
 from rlbot.utils.game_state_util import GameState, CarState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
+
+# from pprint import pprint
 
 session = { 'leader': None, 'agent': {}, 'script': {} }
 
