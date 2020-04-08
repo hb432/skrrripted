@@ -118,7 +118,7 @@ class Agent(BaseAgent):
         ready = packet.game_info.is_round_active
         if self.mode == 1 and ready and self.index < len(cars):
             if self.index == session['leader']:
-                if self.tick == -15:
+                if self.tick == -30:
                     state = GameState.create_from_gametickpacket(packet)
                     cars = cars
                     physics(state.ball.physics, session['script']['ball'], False)
@@ -135,7 +135,7 @@ class Agent(BaseAgent):
                 control(self.control, cars[self.index], self.tick)
             self.tick = self.tick + 1
         if self.mode == 0 and ready:
-            self.tick = -15
+            self.tick = -30
             self.mode = 1
         if self.mode == 1 and not ready:
             if self.index == session['leader']:

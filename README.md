@@ -2,7 +2,9 @@
 Set the initial position of the ball and cars on the field, then apply frame-perfect inputs to each car.
 
 # Usage (For Dummies)
-Make sure you have Rocket League installed and NOT currently open. Download this repository via a ZIP file and extract the contents. Then, navigate to the extracted files and double-click the `run-gui.bat` file. Once the RLBot GUI opens, click "Run" in the lower-right corner. Rocket League will open into a new lobby, and once the game starts, you should see a freestyle shot being scored!
+Download and extract the contents of this repository. Then, navigate to the extracted files and double-click the `run-gui.bat` file. Once the RLBot GUI opens, click "Run" in the lower-right corner. Rocket League will open, and after a few seconds, a local lobby will be created. It is in this lobby that the bots will do their thing.
+
+At the moment, kickoffs are inconsistent. After the kickoff countdown ends, be sure to pause and un-pause the game at least once. Once you've done that, well, sit back and enjoy the show.
 
 **Note: You will need to set your game's max FPS to 60.** It's at the bottom left of Rocket League's "video" settings tab.
 
