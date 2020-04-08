@@ -12,7 +12,7 @@ At the moment, kickoffs are inconsistent. After the kickoff countdown ends, be s
 You can set the target script in the `src/agent.json` file.
 
 # Scripts
-Creating new scripts is simple. Examples have been provided for you in the `src/scripts/` folder, which you can use as starting points for your own scripts.
+Creating new scripts is simple. Examples have been provided for you in the `src/scripts` folder, which you can use as starting points for your own scripts.
 
 **Note:** An in-depth wiki will be created for this soon.
 
