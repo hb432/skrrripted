@@ -7,7 +7,12 @@ Make sure you have Rocket League installed and NOT currently open. Download this
 **Note: You will need to set your game's max FPS to 60.** It's at the bottom left of Rocket League's "video" settings tab.
 
 # Config
-To create your own shots and plays, you will need to edit the `src/agent.json` file. This file contains the instruction set used to guide the ball and any cars on the field. Using the GUI, you can add more bots, but these bots will need instruction sets, or they will simply do nothing. You can use the example provided in this repository as a guide.
+You can set the target script in the `src/agent.json` file.
+
+# Scripts
+Creating new scripts is simple. Examples have been provided for you in the `src/scripts/` folder, which you can use as starting points for your own scripts.
+
+**Note:** An in-depth wiki will be created for this soon.
 
 # Tips
-You can reset the script by pausing and unpausing the game, or scoring the ball into the net. In addition, you can also press "R" while focused on the RLBot console window.
+While editing, you can reload the current script by pausing and un-pausing the game.
