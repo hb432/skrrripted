@@ -55,8 +55,49 @@
             "y": 0,
             "z": 0
          },
+         /*
+            skrrripted instruction set
+            -------------------------------------
+            60 ticks = 1 second
+            below is a list of all instructions and their uses
+            -------------------------------------
+            backward = in air, backward roll, on ground, brake/reverse
+            boost = in air, boost, on ground, boost
+            drift = in air, do nothing, on ground, handbrake
+            forward = in air, forward roll, on ground, throttle
+            jump = in air, dodge, on ground, jump
+            roll-l = in air, air roll left, on ground, do nothing
+            roll-r = in air, air roll right, on ground, do nothing
+            turn-l = in air, spin left, on ground, turn left
+            turn-r = in air, spin right, on ground, turn right
+            -------------------------------------
+            while in air, combine jump with forward, backward, roll-l, or roll-r
+            for a flip in the given direction, for diagonal flips, set forward
+            or backward 1 tick before setting roll-l or roll-r and jump
+            -------------------------------------
+            think of the wait keyword as a divider. each division consists of
+            one or more inputs, each beginning at the exact same moment. no
+            command or keyword apart from wait will actually delay the start
+            time of any other instruction, meaning you can easily combine
+            multiple inputs and delay as needed, a la the best of both worlds.
+            -------------------------------------
+            in this example, the car will boost for 70 ticks. the next command,
+            jump, will not wait for this 70 ticks, instead, it will wait for 50,
+            as specified by the wait keyword. then, 10 ticks after that, it will
+            hold forward and jump again, front-flipping the car. then, 30 ticks
+            after that, it will begin to boost again, for 100 more ticks.
+            -------------------------------------
+            for more complex examples of car control, look at the other example
+            scripts provided in the scripts folder
+         */
          "instructions": [
-            "forward 100",
+            "boost 70",
+            "wait 50",
+            "jump 1",
+            "wait 10",
+            "forward 1",
+            "jump 1",
+            "wait 30",
             "boost 100"
          ]
       }
