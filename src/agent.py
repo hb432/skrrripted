@@ -1,4 +1,4 @@
-from json import load
+from json import loads
 from math import pi, floor
 from os import path, getcwd
 
@@ -100,9 +100,26 @@ def physics(phys, data, velo):
         phys.angular_velocity.y = 0
         phys.angular_velocity.z = 0
 
-def refresh ():
-    session['agent'] = load(open(path.join(getcwd(), 'src', 'agent.json')))
-    session['script'] = load(open(path.join(getcwd(), 'src', session['agent']['script'])))
+def jsonc(file):
+    code = ''
+    lines = file.readlines()
+    comment = False
+    for i in lines:
+        line = i.strip()
+        if not line.startswith('//'):
+            if not comment:
+                if line.startswith('/*'):
+                    comment = True
+                else:
+                    code = code + i + '\n'
+            elif comment and line.endswith('*/'):
+                comment = False
+
+    return loads(code)
+
+def refresh():
+    session['agent'] = jsonc(open(path.join(getcwd(), 'src', 'agent.jsonc'), 'r'))
+    session['script'] = jsonc(open(path.join(getcwd(), 'src', session['agent']['script']), 'r'))
 
 class Agent(BaseAgent):
     
@@ -116,7 +133,7 @@ class Agent(BaseAgent):
     def get_output(self, packet: GameTickPacket):
         cars = session['script']['cars']
         ready = packet.game_info.is_round_active
-        if self.mode == 1 and ready and self.index < len(cars):
+        if self.mode == 1 and ready:
             if self.index == session['leader']:
                 if self.tick == -30:
                     state = GameState.create_from_gametickpacket(packet)
@@ -131,7 +148,7 @@ class Agent(BaseAgent):
                     for i in range(len(cars)):
                         physics(state.cars[i].physics, cars[i], True)
                     self.set_game_state(state)
-            if self.tick > -1:
+            if self.tick > -1 and self.index < len(cars):
                 control(self.control, cars[self.index], self.tick)
             self.tick = self.tick + 1
         if self.mode == 0 and ready:

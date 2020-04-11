@@ -1,0 +1,64 @@
+{
+   // ball physics
+   // with no velocity, the ball will not be affected by gravity until touched
+   "ball": {
+      // +x = left, -x = right (blue team perspective)
+      // +y = orange, -y = blue
+      // +z = elevation
+      "location": {
+         "x": 0,
+         "y": 0,
+         "z": 100
+      },
+      // pitch, front flips rotate this
+      // roll, side flips rotate this
+      // yaw, turns rotate this
+      "rotation": {
+         "pitch": 0,
+         "roll": 0,
+         "yaw": 0
+      },
+      // adds force to the ball, use location for reference
+      "velocity": {
+         "x": 0,
+         "y": 0,
+         "z": -1
+      },
+      // adds spin to the ball, use rotation for reference
+      "angular_velocity": {
+         "x": 0,
+         "y": 0,
+         "z": 0
+      }
+   },
+   // car physics and instructions, same physics as above
+   // unlike the ball, the car will always be pulled by gravity
+   "cars": [
+      {
+         "location": {
+            "x": 0,
+            "y": -1000,
+            "z": 20
+         },
+         "rotation": {
+            "pitch": 0,
+            "roll": 0,
+            "yaw": 90
+         },
+         "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+         },
+         "angular_velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+         },
+         "instructions": [
+            "forward 100",
+            "boost 100"
+         ]
+      }
+   ]
+}
