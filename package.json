@@ -1,0 +1,7 @@
+{
+   "main": "index.js",
+   "private": true,
+   "scripts": {
+      "start": "electron ."
+   }
+}

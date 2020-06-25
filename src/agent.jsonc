@@ -4,7 +4,7 @@
 
    // target JSON must contain ball physics data and a "cars" array
    // refer to "./scripts/example.jsonc" for a detailed explanation of things
-   "script": "./scripts/visionary.jsonc"
+   "script": "./scripts/showcase.jsonc"
 }
 
 /*

@@ -6,9 +6,9 @@ from rlbot.utils.game_state_util import GameState, CarState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
-# from pprint import pprint
+from pprint import pprint
 
-session = { 'leader': None, 'agent': {}, 'script': {} }
+session = { 'leader': None, 'agent': {} }
 
 
 def reset(ctrl):
@@ -102,14 +102,24 @@ def physics(phys, data, velo):
 
 def json(file):
     code = ''
-    for i in file.readlines():
-        code = code + i.strip() + '\n'
+    lines = file.readlines()
+    comment = False
+    for i in lines:
+        line = i.strip()
+        if not line.startswith('//'):
+            if not comment:
+                if line.startswith('/*'):
+                    comment = True
+                else:
+                    code = code + i + '\n'
+            elif comment and line.endswith('*/'):
+                comment = False
+
     return loads(code)
 
 def refresh():
-    session['agent'] = json(open(path.join(getcwd(), 'src', 'agent.json'), 'r'))
-    session['script'] = json(open(path.join(getcwd(), 'src', session['agent']['script']), 'r'))
-    
+    session['agent'] = json(open(path.join(getcwd(), 'agent', 'agent.json'), 'r'))
+
 class Agent(BaseAgent):
     
     def initialize_agent(self):
@@ -120,20 +130,20 @@ class Agent(BaseAgent):
             session['leader'] = self.index
 
     def get_output(self, packet: GameTickPacket):
-        cars = session['script']['cars']
+        cars = session['agent']['cars']
         ready = packet.game_info.is_round_active
         if self.mode == 1 and ready:
             if self.index == session['leader']:
                 if self.tick == -30:
                     state = GameState.create_from_gametickpacket(packet)
                     cars = cars
-                    physics(state.ball.physics, session['script']['ball'], False)
+                    physics(state.ball.physics, session['agent']['ball'], False)
                     for i in range(len(cars)):
                         physics(state.cars[i].physics, cars[i], False)
                     self.set_game_state(state)
                 if self.tick == -1:
                     state = GameState.create_from_gametickpacket(packet)
-                    physics(state.ball.physics, session['script']['ball'], True)
+                    physics(state.ball.physics, session['agent']['ball'], True)
                     for i in range(len(cars)):
                         physics(state.cars[i].physics, cars[i], True)
                     self.set_game_state(state)

@@ -1,64 +1,64 @@
 {
-   // ball physics
-   // with no velocity, the ball will not be affected by gravity until touched
-   "ball": {
-      // +x = left, -x = right (blue team perspective)
-      // +y = orange, -y = blue
-      // +z = elevation
+  // ball physics
+  // with no velocity, the ball will not be affected by gravity until touched
+  "ball": {
+    // +x = left, -x = right (blue team perspective)
+    // +y = orange, -y = blue
+    // +z = elevation
+    "location": {
+      "x": 0,
+      "y": 0,
+      "z": 100
+    },
+    // pitch, front flips rotate this
+    // roll, side flips rotate this
+    // yaw, turns rotate this
+    "rotation": {
+      "pitch": 0,
+      "roll": 0,
+      "yaw": 0
+    },
+    // adds force to the ball, use location for reference
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    // adds spin to the ball, use rotation for reference
+    "angular_velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  // car physics and instructions, same physics as above
+  // unlike the ball, the car will always be pulled by gravity
+  "cars": [
+    {
       "location": {
-         "x": 0,
-         "y": 0,
-         "z": 100
+        "x": 0,
+        "y": -1000,
+        "z": 20
       },
-      // pitch, front flips rotate this
-      // roll, side flips rotate this
-      // yaw, turns rotate this
       "rotation": {
-         "pitch": 0,
-         "roll": 0,
-         "yaw": 0
+        "pitch": 0,
+        "roll": 0,
+        "yaw": 90
       },
-      // adds force to the ball, use location for reference
       "velocity": {
-         "x": 0,
-         "y": 0,
-         "z": -1
+        "x": 0,
+        "y": 0,
+        "z": 0
       },
-      // adds spin to the ball, use rotation for reference
       "angular_velocity": {
-         "x": 0,
-         "y": 0,
-         "z": 0
-      }
-   },
-   // car physics and instructions, same physics as above
-   // unlike the ball, the car will always be pulled by gravity
-   "cars": [
-      {
-         "location": {
-            "x": 0,
-            "y": -1000,
-            "z": 20
-         },
-         "rotation": {
-            "pitch": 0,
-            "roll": 0,
-            "yaw": 90
-         },
-         "velocity": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-         },
-         "angular_velocity": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-         },
-         /*
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      /*
             skrrripted instruction set
             -------------------------------------
-            60 ticks = 1 second
+            120 ticks = 1 second
             below is a list of all instructions and their uses
             -------------------------------------
             backward = in air, backward roll, on ground, brake/reverse
@@ -81,25 +81,25 @@
             time of any other instruction, meaning you can easily combine
             multiple inputs and delay as needed, a la the best of both worlds.
             -------------------------------------
-            in this example, the car will boost for 70 ticks. the next command,
-            jump, will not wait for this 70 ticks, instead, it will wait for 50,
-            as specified by the wait keyword. then, 10 ticks after that, it will
-            hold forward and jump again, front-flipping the car. then, 30 ticks
-            after that, it will begin to boost again, for 100 more ticks.
+            in this example, the car will boost for 140 ticks. the next command,
+            jump, will not wait for this 140 ticks, instead, it will wait for 100,
+            as specified by the wait keyword. then, 20 ticks after that, it will
+            hold forward and jump again, front-flipping the car. then, 60 ticks
+            after that, it will begin to boost again, for 200 more ticks.
             -------------------------------------
             for more complex examples of car control, look at the other example
             scripts provided in the scripts folder
          */
-         "instructions": [
-            "boost 70",
-            "wait 50",
-            "jump 1",
-            "wait 10",
-            "forward 1",
-            "jump 1",
-            "wait 30",
-            "boost 100"
-         ]
-      }
-   ]
+      "instructions": [
+        "boost 140",
+        "wait 100",
+        "jump 2",
+        "wait 20",
+        "forward 2",
+        "jump 2",
+        "wait 60",
+        "boost 200"
+      ]
+    }
+  ]
 }

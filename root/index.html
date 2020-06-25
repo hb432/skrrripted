@@ -1,0 +1,390 @@
+<head>
+   <title>Skrrripted</title>
+   <link rel="stylesheet" href="./assets/index.css">
+   <script defer type="module" src="./assets/index.js"></script>
+</head>
+<body>
+   <grid id="wrapper" type="rows">
+      <grid id="frame" type="columns" size="25px">
+         <block id="title">Skrrripted</block>
+         <icon id="minimize" size="30px">remove</icon>
+         <icon id="close" size="30px">close</icon>
+      </grid>
+      <grid id="match" type="rows">
+         <grid type="columns" size="50px">
+            <text id="map-header">Map: Aquadome</text>
+            <block id="start-match">
+               <icon>play_arrow</icon>
+               <text>Start Match</text>
+            </block>
+         </grid>
+         <grid id="map" type="columns" size="200px">
+            <block id="previous-map" class="map-arrow" size="50px">
+               <icon>chevron_left</icon>
+            </block>
+            <block></block>
+            <block id="next-map" class="map-arrow" size="50px">
+               <icon>chevron_right</icon>
+            </block>
+         </grid>
+         <block id="dropdowns">
+            <block id="options-button" selected class="menu-button" size="40px">
+               <text>Options</text>
+               <grid id="options-rows" type="rows">
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Preset</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mo-preset-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mo-preset" class="display">Soccar</text>
+                        </block>
+                        <block id="mo-preset-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Replay Mode</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mo-replays-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mo-replays" class="display">Enabled</text>
+                        </block>
+                        <block id="mo-replays-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Kickoff Countdowns</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mo-countdowns-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mo-countdowns" class="display">Enabled</text>
+                        </block>
+                        <block id="mo-countdowns-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+               </grid>
+            </block>
+            <block id="mutators-button" class="menu-button" size="40px">
+               <text>Mutators</text>
+               <text name="page2" class="mutators-page">Page 2</text>
+               <text active name="page1" class="mutators-page">Page 1</text>
+               <grid active name="page1" class="mutators-rows" type="rows">
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Match Length</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-match-length-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-match-length" class="display">5 Minutes</text>
+                        </block>
+                        <block id="mm-match-length-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Max Score</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-max-score-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-max-score" class="display">Unlimited</text>
+                        </block>
+                        <block id="mm-max-score-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Overtime</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-overtime-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-overtime" class="display">Unlimited</text>
+                        </block>
+                        <block id="mm-overtime-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Series Length</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-series-length-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-series-length" class="display">Unlimited</text>
+                        </block>
+                        <block id="mm-series-length-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Game Speed</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-game-speed-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-game-speed" class="display">Default</text>
+                        </block>
+                        <block id="mm-game-speed-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Ball Max Speed</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-ball-max-speed-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-ball-max-speed" class="display">Default</text>
+                        </block>
+                        <block id="mm-ball-max-speed-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Ball Type</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-ball-type-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-ball-type" class="display">Default</text>
+                        </block>
+                        <block id="mm-ball-type-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Ball Weight</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-ball-weight-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-ball-weight" class="display">Default</text>
+                        </block>
+                        <block id="mm-ball-weight-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+               </grid>
+               <grid name="page2" class="mutators-rows" type="rows">
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Ball Size</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-ball-size-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-ball-size" class="display">Default</text>
+                        </block>
+                        <block id="mm-ball-size-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Ball Bounciness</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-ball-bounciness-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-ball-bounciness" class="display">Default</text>
+                        </block>
+                        <block id="mm-ball-bounciness-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Boost Amount</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-boost-amount-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-boost-amount" class="display">Default</text>
+                        </block>
+                        <block id="mm-boost-amount-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Rumble</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-rumble-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-rumble" class="display">None</text>
+                        </block>
+                        <block id="mm-rumble-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Boost Strength</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-boost-strength-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-boost-strength" class="display">1x</text>
+                        </block>
+                        <block id="mm-boost-strength-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Gravity</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-gravity-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-gravity" class="display">Default</text>
+                        </block>
+                        <block id="mm-gravity-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Demolish</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-demolish-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-demolish" class="display">Default</text>
+                        </block>
+                        <block id="mm-demolish-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+                  <block size="5px"></block>
+                  <grid class="selector-row" type="columns">
+                     <text class="label">
+                        <text>Respawn Time</text>
+                     </text>
+                     <grid class="selector-panel" type="columns" size="175px">
+                        <block id="mm-respawn-time-p" class="previous-item" size="20px">
+                           <icon>chevron_left</icon>
+                        </block>
+                        <block class="current-item">
+                           <text id="mm-respawn-time" class="display">3 Seconds</text>
+                        </block>
+                        <block id="mm-respawn-time-n" class="next-item"  size="20px">
+                           <icon>chevron_right</icon>
+                        </block>
+                     </grid>
+                     <block size="10px"></block>
+                  </grid>
+               </grid>
+            </block>
+            <block id="agents-button" class="menu-button" size="40px">
+               <text>Agents</text>
+            </block>
+         </block>
+      </grid>
+   </grid>
+</body>

@@ -1,0 +1,57 @@
+@font-face {
+   src: url('./material-icons-sharp.woff2') format('woff2');
+   font-style: normal;
+   font-weight: 400;
+   font-family: 'Material Icons Sharp';
+}
+
+:not(input)::selection {
+   background-color: hsla(0, 0%, 0%, 0);
+}
+
+icon {
+   display: inline-block;
+   white-space: nowrap;
+   font-family: 'Material Icons Sharp';
+}
+
+body {
+   margin: 0;
+}
+
+grid {
+   display: grid;
+}
+
+block {
+   margin: auto;
+   display: block;
+}
+
+text {
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
+
+[disabled] {
+   display: none;
+}
+
+[button] {
+   color: hsla(0, 0%, 100%, 0.5);
+}
+
+[button].selected {
+   color: hsla(0, 0%, 100%, 1.0);
+   text-shadow: 0 0 5px #ffffff6f;
+}
+
+[button]:hover {
+   color: hsla(0, 0%, 100%, 1.0);
+   cursor: pointer;
+}
+
+[button]:active:not(.selected) {
+   color: hsla(210, 100%, 50%, 1.0);
+}
