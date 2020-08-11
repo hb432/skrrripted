@@ -218,6 +218,7 @@ export function database () {
          }
       },
       default: {
+         name: 'Rocket League',
          options: {
             mode: 'Soccer',
             save_replays: false,
@@ -241,7 +242,8 @@ export function database () {
             gravity: 'Default',
             demolish: 'Default',
             respawn_time: '3 Seconds'
-         }
+         },
+         maps: [ 'standard', 'snowy', 'labs', 'dropshot', 'hoops' ]
       },
       presets: {
          boomer_ball: {

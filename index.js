@@ -1,21 +1,8 @@
+const { exec } = require('child_process');
 const { writeFileSync } = require('fs');
-const { exec, execSync } = require('child_process');
 const { app, ipcMain, BrowserWindow, globalShortcut } = require('electron');
 
 const __ = {
-   clean: () => {
-      if (__.pid) {
-         try {
-            execSync(`taskkill /pid ${__.pid} /f /t`, { stdio: 'ignore' });
-            console.log('Old tasks cleaned out.');
-         } catch (error) {
-            console.log('No old tasks to clean out.');
-         }
-      }
-   },
-   exec: () => {
-      __.pid = exec('start rlbot\\run.bat').pid;
-   },
    format: (data) => {
       switch (typeof data) {
          case 'string':
@@ -37,7 +24,6 @@ const __ = {
             break;
       }
    },
-   pid: null,
    script: (data) => {
       console.log('Applying script...');
       writeFileSync('./src/agent.json', JSON.stringify(data));
@@ -115,21 +101,19 @@ app.on('ready', () => {
       maximizable: false,
       resizable: false,
       transparent: true,
-      alwaysOnTop: true,
+      // alwaysOnTop: true,
       webPreferences: { nodeIntegration: true }
    });
 
    ipcMain.on('show', () => portal.show());
    ipcMain.on('minimize', () => portal.minimize());
-   ipcMain.on('close', () => (__.clean(), process.exit()));
+   ipcMain.on('close', () => process.exit());
 
    ipcMain.on('match', (event, data) => {
       console.log('Applying config...');
       __.write(data);
-      console.log('Cleaning up old tasks...');
-      __.clean();
       console.log('Initializing RLBot...');
-      __.exec();
+      exec('./rlbot/run.bat');
    });
 
    ipcMain.on('script', (event, data) => {

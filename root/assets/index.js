@@ -1,11 +1,10 @@
 import { $ } from './basics.js';
 import { database } from './database.js';
 
+const { ipcRenderer } = require('electron');
 const { readFileSync, writeFileSync } = require('fs');
 
-const { ipcRenderer } = require('electron');
-
-/**/ ipcRenderer.send('show');
+ipcRenderer.send('show');
 
 const __ = (window.__ = {
    build: {
