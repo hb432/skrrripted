@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const { writeFileSync } = require('fs');
-const { app, ipcMain, BrowserWindow, globalShortcut } = require('electron');
+const { app, ipcMain, BrowserWindow } = require('electron');
 
 const __ = {
    format: (data) => {

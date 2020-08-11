@@ -3,5 +3,8 @@
    "private": true,
    "scripts": {
       "start": "electron ."
+   },
+   "devDependencies": {
+      "electron": "9.0.0"
    }
 }
