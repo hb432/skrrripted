@@ -115,12 +115,13 @@ try {
    __.data.store = JSON.parse(readFileSync('./root/store.json').toString());
 } catch (error) {}
 
-window.addEventListener('beforeunload', () => {
-   writeFileSync('./root/store.json', JSON.stringify(__.data.store));
-});
-
 $('#minimize').on({ click: () => ipcRenderer.send('minimize') });
-$('#close').on({ click: () => ipcRenderer.send('close') });
+$('#close').on({
+   click: () => {
+      writeFileSync('./root/store.json', JSON.stringify(__.data.store));
+      ipcRenderer.send('close');
+   }
+});
 
 {
    __.navs = {

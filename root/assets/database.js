@@ -246,6 +246,10 @@ export function database () {
          maps: [ 'standard', 'snowy', 'labs', 'dropshot', 'hoops' ]
       },
       presets: {
+         standard: {
+            name: 'Standard',
+            maps: [ 'standard' ]
+         },
          boomer_ball: {
             name: 'Boomer Ball',
             mutators: {
@@ -285,10 +289,6 @@ export function database () {
             name: 'Snow Day',
             options: { mode: 'Hockey' },
             maps: [ 'snowy' ]
-         },
-         standard: {
-            name: 'Standard',
-            maps: [ 'standard' ]
          },
          training: {
             name: 'Training',
