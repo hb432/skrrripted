@@ -1,0 +1,58 @@
+{
+   "ball": {
+      "location": {
+         "x": 0,
+         "y": 0,
+         "z": 100
+      },
+      "rotation": {
+         "pitch": 0,
+         "roll": 0,
+         "yaw": 0
+      },
+      "velocity": {
+         "x": 0,
+         "y": 0,
+         "z": -1
+      },
+      "angular_velocity": {
+         "x": 0,
+         "y": 0,
+         "z": 0
+      }
+   },
+   "cars": [
+      {
+         "location": {
+            "x": 0,
+            "y": -1000,
+            "z": 20
+         },
+         "rotation": {
+            "pitch": 0,
+            "roll": 0,
+            "yaw": 90
+         },
+         "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+         },
+         "angular_velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+         },
+         "instructions": [
+            "boost 70",
+            "wait 50",
+            "jump 1",
+            "wait 10",
+            "forward 1",
+            "jump 1",
+            "wait 30",
+            "boost 100"
+         ]
+      }
+   ]
+}

@@ -1,0 +1,51 @@
+<head>
+   <title>Skrrripted</title>
+   <link rel="stylesheet" href="index.css">
+   <script defer type="module" src="index.js"></script>
+</head>
+<body>
+   <grid id="wrapper" type="rows">
+      <grid id="frame" type="columns" size="30px">
+         <block id="title">Skrrripted</block>
+         <icon id="minimize" size="30px">remove</icon>
+         <icon id="close" size="30px">close</icon>
+      </grid>
+      <grid id="main" type="rows">
+         <grid id="target" type="columns" size="50px">
+            <icon id="target-prev" class="locked" size="50px">chevron_left</icon>
+            <text id="target-display">Target: <span id="target-display-name">Ball</span></text>
+            <icon id="target-next" class="locked" size="50px">chevron_right</icon>
+         </grid>
+         <grid id="physics" type="rows" size="200px">
+            <grid id="physics-location" type="columns">
+               <text id="physics-location-label">Location</text>
+               <input id="physics-location-x" size="80px" type="number" min="-4096" max="4096" placeholder="0" title="Controls the widthwise position. From blue team's perspective, positive is left and negative is right.">
+               <input id="physics-location-y" size="80px" type="number" min="-6000" max="6000" placeholder="0" title="Controls the lengthwise position. Positive for blue half, negative for orange half.">
+               <input id="physics-location-z" size="80px" type="number" min="0" max="2048" placeholder="0" title="Controls the vertical position. The ball rests at 92.75, and cars rest between 17-19 depending on the hitbox.">
+            </grid>
+            <grid id="physics-rotation" type="columns">
+               <text id="physics-rotation-label">Rotation</text>
+               <input id="physics-rotation-pitch" size="80px" type="number" min="-360" max="360" placeholder="0" title="Controls the pitch. Equivalent to forward/backward air roll.">
+               <input id="physics-rotation-roll" size="80px" type="number" min="-360" max="360" placeholder="0" title="Controls the tilt. Equivalent to left/right air roll.">
+               <input id="physics-rotation-yaw" size="80px" type="number" min="-360" max="360" placeholder="0" title="Controls the spin. Equivalent to left/right turn.">
+            </grid>
+            <grid id="physics-velocity" type="columns">
+               <text id="physics-velocity-label">Velocity</text>
+               <input id="physics-velocity-x" size="80px" type="number" min="-15000" max="15000" placeholder="0" title="Controls the widthwise velocity. Supersonic speed is equal to ±2200.">
+               <input id="physics-velocity-y" size="80px" type="number" min="-15000" max="15000" placeholder="0" title="Controls the lengthwise velocity. Supersonic speed is equal to ±2200.">
+               <input id="physics-velocity-z" size="80px" type="number" min="-15000" max="15000" placeholder="0" title="Controls the vertical velocity. Supersonic speed is equal to ±2200.">
+            </grid>
+            <grid id="physics-angular_velocity" type="columns">
+               <text id="physics-angular_velocity-label">Angular Velocity</text>
+               <input id="physics-angular_velocity-x" size="80px" type="number" min="-6" max="6" placeholder="0" title="Controls the pitch speed.">
+               <input id="physics-angular_velocity-y" size="80px" type="number" min="-6" max="6" placeholder="0" title="Controls the tilt speed.">
+               <input id="physics-angular_velocity-z" size="80px" type="number" min="-6" max="6" placeholder="0" title="Controls the spin speed.">
+            </grid>
+         </grid>
+         <grid id="instructions" type="rows">
+            <text id="instructions-label" size="40px">Instructions <icon id="instructions-label-icon" size="40px">help</icon></text>
+            <textarea id="instructions-editor" placeholder="Provide some instructions..." title="The instruction set used to control the agent's movement."></textarea>
+         </grid>
+      </grid>
+   </grid>
+</body>

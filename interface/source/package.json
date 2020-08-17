@@ -1,0 +1,14 @@
+{
+   "name": "pirate-portal",
+   "description": "Any show. Any movie. Just a search and 1-2 clicks away.",
+   "devDependencies": {
+      "electron": "8.2.3",
+      "electron-packager": "^14.2.1"
+   },
+   "main": "index.js",
+   "private": true,
+   "scripts": {
+      "start": "electron .",
+      "build": "electron-packager . skrrripted --platform win32 --arch x64 --asar"
+   }
+}
