@@ -139,20 +139,29 @@ class Agent(PythonHivemind):
         if session['mode'] == 1 and ready:
             if session['tick'] == -30:
                 state = GameState.create_from_gametickpacket(packet)
-                physics(state.ball.physics, session['data']['ball'], False)
-                for agent in session['agents']:
-                    physics(state.cars[agent['index']].physics, cars[agent['car']], False)
+                try:
+                    physics(state.ball.physics, session['data']['ball'], False)
+                    for agent in session['agents']:
+                        physics(state.cars[agent['index']].physics, cars[agent['car']], False)
+                except:
+                    pass
                 self.set_game_state(state)
             if session['tick'] == -1:
                 state = GameState.create_from_gametickpacket(packet)
-                physics(state.ball.physics, session['data']['ball'], True)
-                for agent in session['agents']:
-                    physics(state.cars[agent['index']].physics, cars[agent['car']], True)
+                try:
+                    physics(state.ball.physics, session['data']['ball'], True)
+                    for agent in session['agents']:
+                        physics(state.cars[agent['index']].physics, cars[agent['car']], True)
+                except:
+                    pass
                 self.set_game_state(state)
             if session['tick'] > -1:
                 for agent in session['agents']:
                     if agent['car'] < len(cars):
-                        control(agent['control'], cars[agent['car']], session['tick'])
+                        try:
+                            control(agent['control'], cars[agent['car']], session['tick'])
+                        except:
+                            pass
             session['tick'] = session['tick'] + 1
         if session['mode'] == 0 and ready:
             session['mode'] = 1
